@@ -10,16 +10,28 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    # TODO displays the form to the user
+    @category = Category.new
   end
 
   def create
-    # TODO consumes the data from the form and persists it
+    @category = Category.new(category_params)
+    if @category.save
+      redirect_to categories_path
+    else
+      flash[:error] = 'Title must be filled in.'
+      render :new
+    end
   end
 
   # no need for EDIT, UPDATE b/c you can only create/destroy
 
   def destroy
     # TODO deletes a category from the database
+  end
+
+  private
+
+  def category_params
+    params.require(:category).permit(:title)
   end
 end
