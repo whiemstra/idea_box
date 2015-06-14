@@ -1,0 +1,9 @@
+<h1>Categories List</h1>
+
+<ul>
+  <% @categories.each do |category| %>
+    <li><%= category.title %></li>
+  <% end %>
+</ul>
+
+<p>Total Categories: <%= @categories.size %></p>
