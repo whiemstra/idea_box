@@ -1,6 +1,8 @@
 class IdeasController < ApplicationController
   # TODO restrict actions to the original user who created the idea
 
+  # TODO protect pages: before_filter :require_login
+
   def new
     @idea = Idea.new
   end
