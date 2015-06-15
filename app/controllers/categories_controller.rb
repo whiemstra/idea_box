@@ -1,7 +1,9 @@
 class CategoriesController < ApplicationController
   # TODO - only admin's can create and delete categories!
 
-  # TODO protect pages - before_filter :require_login
+  # TODO protect pages
+  #before_filter :require_login
+  # before_filter :require_admin, except: [:index, :show]
 
   def index
     @categories = Category.all

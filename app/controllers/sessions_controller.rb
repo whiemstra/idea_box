@@ -10,7 +10,13 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to categories_path
     else
+      flash[:error] = 'Username and/or Password are incorrect'  #'Username has already been taken.'
       render 'new'
     end
+  end
+
+  def destroy
+    # session.clear
+    # redirect_to login_path
   end
 end

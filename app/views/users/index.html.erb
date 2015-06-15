@@ -1,0 +1,18 @@
+<h1> Welcome to IdeaBox! </h1>
+
+<h2>Please Log in </h2>
+
+<%= link_to 'Signup', href: new_user_path %>
+
+
+<%= form_for(:session, url: login_path) do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %> <br>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %> <br>
+
+  <%= f.submit "Login" %>
+<% end %>
+
+<%= "@_$(*@#_$*#)&)#*(@_*#_%^@!($*_)#*$%()" %>

@@ -1,7 +1,8 @@
 class IdeasController < ApplicationController
   # TODO restrict actions to the original user who created the idea
 
-  # TODO protect pages: before_filter :require_login
+  # TODO protect pages:
+  # before_filter :require_login
 
   def new
     @idea = Idea.new
@@ -19,6 +20,12 @@ class IdeasController < ApplicationController
 
   def edit
     @idea = Idea.find(params[:id])
+    # if @idea.user != current_user
+    #   flash[:error] = 'You can only edit your own ideas'
+    #   redirect_to root_path
+    # else
+    #   render
+    # end
   end
 
   def update
@@ -31,8 +38,13 @@ class IdeasController < ApplicationController
 
   def destroy
     @idea = Idea.find(params[:id])
-    @idea.destroy
-    redirect_to category_path(@idea.category)
+    # if @idea.user != current_user
+    #   flash[:error] = 'You can only destroy your own ideas'
+    #   redirect_to root_path
+    # else
+      @idea.destroy
+      redirect_to category_path(@idea.category)
+    # end
   end
 
   private
@@ -40,4 +52,5 @@ class IdeasController < ApplicationController
   def idea_params
     params.require(:idea).permit(:description, :category_id)
   end
+
 end
