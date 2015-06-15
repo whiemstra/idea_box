@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    # TODO show a particular category
+    @category = Category.find(params[:id])
   end
 
   def new
@@ -26,7 +26,9 @@ class CategoriesController < ApplicationController
   # no need for EDIT, UPDATE b/c you can only create/destroy
 
   def destroy
-    # TODO deletes a category from the database
+    @category = Category.find(params[:id])
+    @category.destroy
+    redirect_to categories_path
   end
 
   private

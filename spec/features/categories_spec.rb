@@ -53,12 +53,39 @@ describe 'creating a category', type: :feature do
 end
 
 describe 'viewing a category', type: :feature do
-  it 'has a link to view a category from the category list page'
-  it 'displays a list of ideas associated to that category'
+  before :each do
+    @category = FactoryGirl.create(:category, title: 'My Category')
+    @category.ideas = FactoryGirl.create_list(:idea, 1, description: 'First Idea')
+  end
+
+  it 'has a link to view a category from the category list page' do
+    visit categories_path
+    expect(page).to have_link('My Category', href: category_path(@category))
+  end
+
+  it 'displays a list of ideas associated to that category' do
+    visit category_path(@category)
+    expect(page).to have_text('My Category')
+    expect(page).to have_text('Total Ideas: 1')
+    expect(page).to have_text('First Idea')
+  end
 end
 
 describe 'managing an existing category', type: :feature do
-  it 'has a delete link'
+  before :each do
+    @category = FactoryGirl.create(:category, title: 'Category to delete')
+  end
+
+  it 'has a delete link and can be deleted' do
+    visit category_path(@category)
+    expect(page).to have_link('Delete', href: category_path(@category))
+
+    click_link('Delete')
+
+    expect(current_path).to eql(categories_path)
+    expect(page).to have_no_text('Category to delete')
+  end
+
   it 'can only be deleted by an admin'
   it 'cannot be deleted by a regular user'
 end

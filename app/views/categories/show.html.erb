@@ -1,0 +1,12 @@
+<h2>Viewing Category: <%= @category.title %></h2>
+
+<ul>
+  <% @category.ideas.each do |idea| %>
+    <li><%= idea.description %> | <%= link_to 'Edit', edit_idea_path(idea) %> | <%= link_to 'Delete Idea', idea_path(idea), method: 'delete' %></li>
+  <% end %>
+</ul>
+
+<p>Total Ideas: <%= @category.ideas.count %></p>
+
+<%= link_to 'Delete', category_path(@category), method: 'delete' %> |
+<%= link_to 'Back to Category List', categories_path %>

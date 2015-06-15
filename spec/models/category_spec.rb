@@ -22,7 +22,11 @@ describe Category do
 
   # Relationships
 
-  it 'has many ideas'
+  it 'has many ideas' do
+    expect(category).to respond_to(:ideas)
 
+    category.ideas = FactoryGirl.create_list(:idea, 2)
+    expect(category.ideas).to_not be_empty
+  end
 
 end

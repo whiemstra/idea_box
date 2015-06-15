@@ -4,8 +4,10 @@
 
 <ul>
   <% @categories.each do |category| %>
-    <li><%= category.title %></li>
+    <li><%= link_to category.title, category_path(category) %></li>
   <% end %>
 </ul>
 
 <p>Total Categories: <%= @categories.size %></p>
+
+<%= link_to 'New Idea', new_idea_path %>
