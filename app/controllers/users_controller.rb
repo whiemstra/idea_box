@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to @user
+      redirect_to categories_path
     else
       flash[:error] = 'Username and Password cannot be blank'  #'Username has already been taken.'
       render :new

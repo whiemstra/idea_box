@@ -13,14 +13,14 @@ describe 'signup', type: :feature do
 
   it 'asks for a username and password' do
     visit new_user_path
-    expect(page).to have_text('Username')
-    expect(page).to have_text('Password')
+    expect(page).to have_text('Create a new account')
 
     fill_in "Username", with: "whitney"
     fill_in "Password", with: "pa$$word"
     click_button "Create Account"
 
-    expect(page).to have_content("Welcome, whitney")
+    expect(page).to have_content("Categories List")
+    expect(current_path).to eql(categories_path)
   end
 
   it 'errors if username or password are blank' do
@@ -53,6 +53,7 @@ describe 'log in', type: :feature do
 
 
   it 'sends people to the login page if not logged in'
+  it 'redirects to the categories page after logging in'
   it 'errors if username does not exist'
   it 'errors if username exists but password is wrong'
   it 'errors if username and password are blank'
